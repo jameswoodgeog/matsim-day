@@ -8,6 +8,7 @@ import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.scenario.ScenarioUtils;
+//import org.matsim.contrib.multimodal.MultiModalModule;
 
 public class RunMatsim {
     public static void main(String[] args) {
@@ -26,9 +27,13 @@ public class RunMatsim {
         // To use the deterministic pt simulation (Part 1 of 2):
         controler.addOverridingModule(new SBBTransitModule());
 
+//        // adding the multimodal module as a test
+//        controler.addOverridingModule(new MultiModalModule());
+
         // To use the deterministic pt simulation (Part 2 of 2):
         controler.configureQSimComponents(components -> {
             new SBBTransitEngineQSimModule().configure(components);
+
         });
 
         controler.run();
