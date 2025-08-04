@@ -13,28 +13,35 @@ import org.matsim.core.scenario.ScenarioUtils;
 public class RunMatsim {
     public static void main(String[] args) {
 
-        //load config
+        // load config
         Config config = ConfigUtils.loadConfig(args[0]);
 
-        //load config into scenario
+        // load config into scenario
         final Scenario scenario = ScenarioUtils.loadScenario(config);
 
         Controler controler = new Controler(scenario);
 
-        // To use the fast pt router (Part 1 of 1)
+        // controler.addOverridingModule(new SimWrapperModule())
+
+        // To use the fast pt router (always needed for both QSim and Hermes):
         controler.addOverridingModule(new SwissRailRaptorModule());
 
-        // To use the deterministic pt simulation (Part 1 of 2):
+        // --- HERMES (SBB deterministic PT simulation) ENABLED ---
+        // To use Hermes, ensure the following two lines are UNcommented:
         controler.addOverridingModule(new SBBTransitModule());
-
-//        // adding the multimodal module as a test
-//        controler.addOverridingModule(new MultiModalModule());
-
-        // To use the deterministic pt simulation (Part 2 of 2):
         controler.configureQSimComponents(components -> {
             new SBBTransitEngineQSimModule().configure(components);
-
         });
+        // --- END HERMES ---
+
+        // --- QSIM (default MATSim mobsim) DISABLED ---
+        // To use QSim instead of Hermes, COMMENT OUT the two Hermes lines above
+        // and UNCOMMENT the following (if any QSim-specific modules are needed):
+        // (No QSim-specific modules required for standard QSim operation)
+        // --- END QSIM ---
+
+        // // adding the multimodal module as a test
+        // controler.addOverridingModule(new MultiModalModule());
 
         controler.run();
     }

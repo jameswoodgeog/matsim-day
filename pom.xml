@@ -69,6 +69,12 @@
 <!--            <version>14.0</version>-->
 <!--        </dependency>-->
 
+<!--        <dependency>-->
+<!--            <groupId>org.matsim.contrib</groupId>-->
+<!--            <artifactId>simwrapper</artifactId>-->
+<!--            <version>14.0</version>-->
+<!--        </dependency>-->
+        
         <dependency>
             <groupId>org.matsim.contrib</groupId>
             <artifactId>bicycle</artifactId>
