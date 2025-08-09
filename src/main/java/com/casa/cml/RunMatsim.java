@@ -7,8 +7,11 @@ import org.matsim.api.core.v01.Scenario;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.Controler;
+import org.matsim.core.router.AnalysisMainModeIdentifier;
+import org.matsim.core.router.MainModeIdentifier;
 import org.matsim.core.scenario.ScenarioUtils;
 //import org.matsim.contrib.multimodal.MultiModalModule;
+import org.matsim.simwrapper.SimWrapperModule;
 
 public class RunMatsim {
     public static void main(String[] args) {
@@ -21,7 +24,17 @@ public class RunMatsim {
 
         Controler controler = new Controler(scenario);
 
-        // controler.addOverridingModule(new SimWrapperModule())
+        // Bind custom main mode identifier
+        controler.addOverridingModule(new org.matsim.core.controler.AbstractModule() {
+            @Override
+            public void install() {
+                bind(MainModeIdentifier.class).to(CustomMainModeIdentifier.class);
+                bind(AnalysisMainModeIdentifier.class).to(CustomMainModeIdentifier.class);
+            }
+        });
+        System.out.println("CustomMainModeIdentifier binding added!");
+
+        controler.addOverridingModule(new SimWrapperModule());
 
         // To use the fast pt router (always needed for both QSim and Hermes):
         controler.addOverridingModule(new SwissRailRaptorModule());

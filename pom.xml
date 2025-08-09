@@ -40,6 +40,16 @@
             </releases>
         </repository>
 
+<!--        -->
+<!--        Trying to add matsim-->
+        <repository>
+            <id>matsim-repo</id>
+            <url>https://repo.matsim.org/repository/matsim/</url>
+        </repository>
+<!--        Trying to add matsim-->
+<!---->
+
+
         <repository>
             <id>osgeo</id>
             <name>OSGeo Release Repository</name>
@@ -60,7 +70,7 @@
             <!-- This is the matsim "core": -->
             <groupId>org.matsim</groupId>
             <artifactId>matsim</artifactId>
-            <version>14.0</version>
+            <version>2026.0-SNAPSHOT</version>
         </dependency>
 
 <!--        <dependency>-->
@@ -68,6 +78,12 @@
 <!--            <artifactId>multimodal</artifactId>-->
 <!--            <version>14.0</version>-->
 <!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.matsim.contrib</groupId>
+            <artifactId>simwrapper</artifactId>
+            <version>2026.0-SNAPSHOT</version>
+        </dependency>
 
 <!--        <dependency>-->
 <!--            <groupId>org.matsim.contrib</groupId>-->
@@ -78,13 +94,13 @@
         <dependency>
             <groupId>org.matsim.contrib</groupId>
             <artifactId>bicycle</artifactId>
-            <version>14.0</version>
+            <version>2026.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>org.matsim.contrib</groupId>
             <artifactId>sbb-extensions</artifactId>
-            <version>14.0</version>
+            <version>2026.0-SNAPSHOT</version>
         </dependency>
 
         <dependency>
@@ -174,14 +190,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.10.1</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>21</source>
+                    <target>21</target>
                     <showWarnings>false</showWarnings>
                     <showDeprecation>false</showDeprecation>
                     <encoding>UTF-8</encoding>
-                    <!-- configure initial and maximal memory for compiling -->
                     <fork>true</fork>
                     <meminitial>128m</meminitial>
                     <maxmem>512m</maxmem>
