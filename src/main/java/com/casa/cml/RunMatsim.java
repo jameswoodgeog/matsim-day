@@ -10,11 +10,14 @@ import org.matsim.core.controler.Controler;
 import org.matsim.core.router.AnalysisMainModeIdentifier;
 import org.matsim.core.router.MainModeIdentifier;
 import org.matsim.core.scenario.ScenarioUtils;
-//import org.matsim.contrib.multimodal.MultiModalModule;
 import org.matsim.simwrapper.SimWrapperModule;
 
 public class RunMatsim {
     public static void main(String[] args) {
+        
+        // comment this out if required---------------------------------------
+        System.out.println("CLASSPATH: " + System.getProperty("java.class.path"));
+        //-------------------------------------------------------------------- 
 
         // load config
         Config config = ConfigUtils.loadConfig(args[0]);
