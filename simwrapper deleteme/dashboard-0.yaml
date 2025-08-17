@@ -1,0 +1,97 @@
+header:
+  title: Initial and Final Iteration Summary
+  description: Summary of mode, trip, and leg data for Iteration 0 (initial plans) and Iteration 99 (final plans)
+layout:
+  first:
+  - type: plotly
+    title: Mode Distribution - Initial
+    description: Distribution of modes used in initial legs (Iteration 0)
+    datasets:
+      dataset: outputs/ITERS/it.0/0.legs.csv.gz
+    traces:
+      - x: $dataset.mode
+        type: histogram
+        name: Mode
+        texttemplate: '%{y}'
+        textposition: auto
+    layout:
+      xaxis:
+        title: Mode
+      yaxis:
+        title: Count
+  - type: plotly
+    title: Mode Distribution - Final
+    description: Distribution of modes used in final legs (Iteration 99)
+    datasets:
+      dataset: outputs/ITERS/it.99/99.legs.csv.gz
+    traces:
+      - x: $dataset.mode
+        type: histogram
+        name: Mode
+        texttemplate: '%{y}'
+        textposition: auto
+    layout:
+      xaxis:
+        title: Mode
+      yaxis:
+        title: Count
+  second:
+  - type: plotly
+    title: Main Mode Distribution (Trips) - Initial
+    description: Distribution of main_mode in trips (Iteration 0)
+    datasets:
+      dataset: outputs/ITERS/it.0/0.trips.csv.gz
+    traces:
+      - x: $dataset.main_mode
+        type: histogram
+        name: Main Mode
+    layout:
+      xaxis:
+        title: Main Mode
+      yaxis:
+        title: Trip Count
+  - type: plotly
+    title: Main Mode Distribution (Trips) - Final
+    description: Distribution of main_mode in trips (Iteration 99)
+    datasets:
+      dataset: outputs/ITERS/it.99/99.trips.csv.gz
+    traces:
+      - x: $dataset.main_mode
+        type: histogram
+        name: Main Mode
+    layout:
+      xaxis:
+        title: Main Mode
+      yaxis:
+        title: Trip Count
+  third:
+  - type: plotly
+    title: Most Common Trip Chains (Modes Sequences) - Initial
+    description: Bar plot of most frequent modes sequences in trips (Iteration 0)
+    datasets:
+      dataset: outputs/ITERS/it.0/0.trips.csv.gz
+    traces:
+      - x: $dataset.modes
+        type: histogram
+        name: Modes Sequence
+    layout:
+      xaxis:
+        title: Modes Sequence
+        tickangle: 45
+      yaxis:
+        title: Trip Count
+  - type: plotly
+    title: Most Common Trip Chains (Modes Sequences) - Final
+    description: Bar plot of most frequent modes sequences in trips (Iteration 99)
+    datasets:
+      dataset: outputs/ITERS/it.99/99.trips.csv.gz
+    traces:
+      - x: $dataset.modes
+        type: histogram
+        name: Modes Sequence
+    layout:
+      xaxis:
+        title: Modes Sequence
+        tickangle: 45
+      yaxis:
+        title: Trip Count

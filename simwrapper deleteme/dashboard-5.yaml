@@ -1,0 +1,180 @@
+header:
+  title: Scores
+  description: Detailed score evolution by iteration and subpopulation.
+layout:
+  - type: plotly
+    title: Average Scores by Iteration
+    width: 1.0
+    datasets:
+      dataset:
+        file: outputs/scorestats.csv
+    traces:
+      - x: $dataset.iteration
+        y: $dataset.avg_average
+        type: scatter
+        mode: lines+markers
+        name: Average (All)
+        line:
+          color: "#0072B2" # Blue
+      - x: $dataset.iteration
+        y: $dataset.avg_executed
+        type: scatter
+        mode: lines+markers
+        name: Executed (All)
+        line:
+          color: "#D55E00" # Orange
+      - x: $dataset.iteration
+        y: $dataset.avg_best
+        type: scatter
+        mode: lines+markers
+        name: Best (All)
+        line:
+          color: "#F0E442" # Yellow
+      - x: $dataset.iteration
+        y: $dataset.avg_worst
+        type: scatter
+        mode: lines+markers
+        name: Worst (All)
+        line:
+          color: "#CC79A7" # Reddish Purple
+    layout:
+      xaxis:
+        title: Iteration
+      yaxis:
+        title: Score
+  - type: csv
+    title: Raw Score Data (All)
+    dataset: outputs/scorestats.csv
+    showAllRows: true
+  - type: plotly
+    title: Average Scores by Iteration (Medium Income)
+    width: 1.0
+    datasets:
+      dataset:
+        file: outputs/scorestats_medium income.csv
+    traces:
+      - x: $dataset.iteration
+        y: $dataset.avg_average
+        type: scatter
+        mode: lines+markers
+        name: Average (Medium)
+        line:
+          color: "#0072B2" # Blue
+      - x: $dataset.iteration
+        y: $dataset.avg_executed
+        type: scatter
+        mode: lines+markers
+        name: Executed (Medium)
+        line:
+          color: "#D55E00" # Orange
+      - x: $dataset.iteration
+        y: $dataset.avg_best
+        type: scatter
+        mode: lines+markers
+        name: Best (Medium)
+        line:
+          color: "#F0E442" # Yellow
+      - x: $dataset.iteration
+        y: $dataset.avg_worst
+        type: scatter
+        mode: lines+markers
+        name: Worst (Medium)
+        line:
+          color: "#CC79A7" # Reddish Purple
+    layout:
+      xaxis:
+        title: Iteration
+      yaxis:
+        title: Score
+  - type: csv
+    title: Raw Score Data (Medium Income)
+    dataset: outputs/scorestats_medium income.csv
+    showAllRows: true
+  - type: plotly
+    title: Average Scores by Iteration (Low Income)
+    width: 1.0
+    datasets:
+      dataset:
+        file: outputs/scorestats_low income.csv
+    traces:
+      - x: $dataset.iteration
+        y: $dataset.avg_average
+        type: scatter
+        mode: lines+markers
+        name: Average (Low)
+        line:
+          color: "#0072B2" # Blue
+      - x: $dataset.iteration
+        y: $dataset.avg_executed
+        type: scatter
+        mode: lines+markers
+        name: Executed (Low)
+        line:
+          color: "#D55E00" # Orange
+      - x: $dataset.iteration
+        y: $dataset.avg_best
+        type: scatter
+        mode: lines+markers
+        name: Best (Low)
+        line:
+          color: "#F0E442" # Yellow
+      - x: $dataset.iteration
+        y: $dataset.avg_worst
+        type: scatter
+        mode: lines+markers
+        name: Worst (Low)
+        line:
+          color: "#CC79A7" # Reddish Purple
+    layout:
+      xaxis:
+        title: Iteration
+      yaxis:
+        title: Score
+  - type: csv
+    title: Raw Score Data (Low Income)
+    dataset: outputs/scorestats_low income.csv
+    showAllRows: true
+  - type: plotly
+    title: Average Scores by Iteration (High Income)
+    width: 1.0
+    datasets:
+      dataset:
+        file: outputs/scorestats_high income.csv
+    traces:
+      - x: $dataset.iteration
+        y: $dataset.avg_average
+        type: scatter
+        mode: lines+markers
+        name: Average (High)
+        line:
+          color: "#0072B2" # Blue
+      - x: $dataset.iteration
+        y: $dataset.avg_executed
+        type: scatter
+        mode: lines+markers
+        name: Executed (High)
+        line:
+          color: "#D55E00" # Orange
+      - x: $dataset.iteration
+        y: $dataset.avg_best
+        type: scatter
+        mode: lines+markers
+        name: Best (High)
+        line:
+          color: "#F0E442" # Yellow
+      - x: $dataset.iteration
+        y: $dataset.avg_worst
+        type: scatter
+        mode: lines+markers
+        name: Worst (High)
+        line:
+          color: "#CC79A7" # Reddish Purple
+    layout:
+      xaxis:
+        title: Iteration
+      yaxis:
+        title: Score
+  - type: csv
+    title: Raw Score Data (High Income)
+    dataset: outputs/scorestats_high income.csv
+    showAllRows: true

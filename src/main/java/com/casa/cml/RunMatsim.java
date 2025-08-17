@@ -43,7 +43,7 @@ public class RunMatsim {
         controler.addOverridingModule(new SwissRailRaptorModule());
 
         // --- HERMES (SBB deterministic PT simulation) ENABLED ---
-        // To use Hermes, ensure the following two lines are UNcommented:
+        // To use Hermes, ensure the following two lines are Uncommented:
         controler.addOverridingModule(new SBBTransitModule());
         controler.configureQSimComponents(components -> {
             new SBBTransitEngineQSimModule().configure(components);

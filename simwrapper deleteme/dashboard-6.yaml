@@ -1,0 +1,276 @@
+header:
+  title: Additional plots
+  description: Useful additional visualizations from available output data.
+layout:
+  - type: plotly
+    title: Mode Chains Distribution
+    width: 1.0
+    datasets:
+      dataset:
+        file: outputs/analysis/population/mode_chains.csv
+    traces:
+      - x: $dataset.modes
+        y: $dataset.share
+        type: bar
+        name: Mode Chain
+        marker:
+          color: "#0072B2" # Okabe-Ito Blue
+    layout:
+      xaxis:
+        title: Mode Chain
+        tickangle: 45
+      yaxis:
+        title: Share
+  - type: plotly
+    title: Mode Share by Trip Purpose
+    width: 1.0
+    datasets:
+      dataset:
+        file: outputs/analysis/population/mode_share_per_purpose.csv
+    traces:
+      - x: $dataset.purpose
+        y: $dataset.share
+        type: bar
+        name: $dataset.main_mode
+        marker:
+          color: "#0072B2" # Blue for bike
+        filter:
+          main_mode: bike
+      - x: $dataset.purpose
+        y: $dataset.share
+        type: bar
+        name: $dataset.main_mode
+        marker:
+          color: "#D55E00" # Orange for pt
+        filter:
+          main_mode: pt
+      - x: $dataset.purpose
+        y: $dataset.share
+        type: bar
+        name: $dataset.main_mode
+        marker:
+          color: "#009E73" # Green for walk
+        filter:
+          main_mode: walk
+    layout:
+      barmode: stack
+      xaxis:
+        title: Purpose
+      yaxis:
+        title: Share
+  - type: plotly
+    title: Public Transport Usage by Vehicle Type and Hour
+    width: 1.0
+    datasets:
+      dataset:
+        file: outputs/analysis/pt/pt_pax_per_hour_and_vehicle_type.csv
+    traces:
+      - x: $dataset.hour
+        y: $dataset.passenger_count
+        type: bar
+        name: Bus
+        marker:
+          color: "#0072B2"
+        filter:
+          vehicle_type: Bus
+      - x: $dataset.hour
+        y: $dataset.passenger_count
+        type: bar
+        name: Rail
+        marker:
+          color: "#D55E00"
+        filter:
+          vehicle_type: Rail
+      - x: $dataset.hour
+        y: $dataset.passenger_count
+        type: bar
+        name: Subway
+        marker:
+          color: "#009E73"
+        filter:
+          vehicle_type: Subway
+    layout:
+      barmode: group
+      xaxis:
+        title: Hour
+      yaxis:
+        title: Passenger Count
+  - type: plotly
+    title: Congestion Index by Road Type and Hour
+    width: 1.0
+    datasets:
+      dataset:
+        file: outputs/analysis/traffic/traffic_stats_by_road_type_and_hour.csv
+    traces:
+      - x: $dataset.hour
+        y: $dataset.congestion_index
+        type: line
+        name: all
+        line:
+          color: "#0072B2"
+        filter:
+          road_type: all
+      - x: $dataset.hour
+        y: $dataset.congestion_index
+        type: line
+        name: unclassified
+        line:
+          color: "#D55E00"
+        filter:
+          road_type: unclassified
+    layout:
+      xaxis:
+        title: Hour
+      yaxis:
+        title: Congestion Index
+  - type: plotly
+    title: Capacity Utilization and Average Speed by Road Type (Daily)
+    width: 1.0
+    datasets:
+      dataset:
+        file: outputs/analysis/traffic/traffic_stats_by_road_type_daily.csv
+    traces:
+      - x: $dataset.Road Type
+        y: $dataset.Cap. Utilization
+        type: bar
+        name: Capacity Utilization
+        marker:
+          color: "#0072B2"
+      - x: $dataset.Road Type
+        y: $dataset.Avg. Speed [km/h]
+        type: bar
+        name: Avg. Speed [km/h]
+        marker:
+          color: "#D55E00"
+    layout:
+      barmode: group
+      xaxis:
+        title: Road Type
+      yaxis:
+        title: Value
+  - type: plotly
+    title: Stuck Agents by Link (Top 20)
+    description: >
+      If this plot is empty, it means no stuck agents were found in this run.
+    width: 1.0
+    datasets:
+      dataset:
+        file: outputs/analysis/population/stuck_agents_per_link.csv
+    traces:
+      - x: $dataset.link_id
+        y: $dataset.Agents
+        type: bar
+        name: Stuck Agents
+        marker:
+          color: "#0072B2"
+    layout:
+      xaxis:
+        title: Link ID
+        tickangle: 45
+      yaxis:
+        title: Number of Stuck Agents
+  - type: plotly
+    title: Mode Share by Distance
+    width: 1.0
+    datasets:
+      dataset:
+        file: outputs/analysis/population/mode_share_per_dist.csv
+    traces:
+      - x: $dataset.dist_group
+        y: $dataset.share
+        type: bar
+        name: bike
+        marker:
+          color: "#0072B2"
+        filter:
+          main_mode: bike
+      - x: $dataset.dist_group
+        y: $dataset.share
+        type: bar
+        name: walk
+        marker:
+          color: "#009E73"
+        filter:
+          main_mode: walk
+      - x: $dataset.dist_group
+        y: $dataset.share
+        type: bar
+        name: pt
+        marker:
+          color: "#D55E00"
+        filter:
+          main_mode: pt
+    layout:
+      barmode: stack
+      xaxis:
+        title: Distance Group
+      yaxis:
+        title: Share
+      legend:
+        title: Mode
+  - type: plotly
+    title: Passenger Kilometers Traveled per Mode (Iterations)
+    width: 1.0
+    height: 10
+    datasets:
+      dataset:
+        file: outputs/pkm_modestats.csv
+    traces:
+      - x: $dataset.Iteration
+        y: $dataset.car
+        type: scatter
+        mode: lines+markers
+        name: Car
+        line:
+          color: '#0072B2'
+      - x: $dataset.Iteration
+        y: $dataset.bus
+        type: scatter
+        mode: lines+markers
+        name: Bus
+        line:
+          color: '#D55E00'
+      - x: $dataset.Iteration
+        y: $dataset.bike
+        type: scatter
+        mode: lines+markers
+        name: Bike
+        line:
+          color: '#009E73'
+      - x: $dataset.Iteration
+        y: $dataset.walk
+        type: scatter
+        mode: lines+markers
+        name: Walk
+        line:
+          color: '#F0E442'
+      - x: $dataset.Iteration
+        y: $dataset.rail
+        type: scatter
+        mode: lines+markers
+        name: Rail
+        line:
+          color: '#CC79A7'
+      - x: $dataset.Iteration
+        y: $dataset.subway
+        type: scatter
+        mode: lines+markers
+        name: Subway
+        line:
+          color: '#56B4E9'
+      - x: $dataset.Iteration
+        y: $dataset.pt
+        type: scatter
+        mode: lines+markers
+        name: PT
+        line:
+          color: '#E69F00'
+    layout:
+      xaxis:
+        title: Iteration
+      yaxis:
+        title: Passenger Kilometers Traveled
+      legend:
+        orientation: h
+        x: 0
+        y: -0.2

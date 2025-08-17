@@ -1,0 +1,60 @@
+header:
+  title: Final Iteration Summary
+  description: Summary of mode, trip, and leg data for Iteration 99 (final plans)
+layout:
+  - type: plotly
+    title: Mode Distribution (Histogram)
+    description: Distribution of modes used in final legs (Iteration 99)
+    datasets:
+      dataset: outputs/ITERS/it.99/99.legs.csv.gz
+    traces:
+      - x: $dataset.mode
+        type: histogram
+        name: Mode
+    layout:
+      xaxis:
+        title: Mode
+      yaxis:
+        title: Count
+  - type: csv
+    title: Final Activities
+    description: All activities (Iteration 99)
+    dataset: outputs/ITERS/it.99/99.activities.csv.gz
+    showAllRows: false
+  - type: csv
+    title: Leg Durations (txt)
+    description: Leg duration summary (Iteration 99)
+    dataset: outputs/ITERS/it.99/99.legdurations.txt
+    showAllRows: true
+  - type: csv
+    title: Leg Histogram (txt)
+    description: Leg histogram (Iteration 99)
+    dataset: outputs/ITERS/it.99/99.legHistogram.txt
+    showAllRows: true
+  - type: plotly
+    title: Main Mode Distribution (Trips)
+    description: Distribution of main_mode in trips (Iteration 99)
+    datasets:
+      dataset: outputs/ITERS/it.99/99.trips.csv.gz
+    traces:
+      - x: $dataset.main_mode
+        type: histogram
+        name: Main Mode
+    layout:
+      xaxis:
+        title: Main Mode
+      yaxis:
+        title: Trip Count
+  - type: plotly
+    title: Most Common Trip Chains (Modes Sequences)
+    description: Bar plot of most frequent modes sequences in trips (Iteration 99)
+    datasets:
+      dataset: outputs/ITERS/it.99/99.trips.csv.gz
+    traces:
+      - x: $dataset.modes
+        type: histogram
+        name: Modes Sequence
+    layout:
+      xaxis:
+        title: Modes Sequence
+        tickangle: 45
